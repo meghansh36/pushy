@@ -10,3 +10,4 @@ _site
 *.ipr
 *.iws
 .idea/
+.nondex/
