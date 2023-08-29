@@ -213,9 +213,6 @@ public abstract class ValidatingPushNotificationHandlerTest {
     @Test
     void testHandleNotificationWithDeviceTokenForWrongTopic() {
         this.headers.set(APNS_TOPIC_HEADER, TOPIC + ".definitely.wrong");
-	System.out.println("##############################");
-        System.out.println(this.headers);
-	System.out.println(this.payload);
         this.assertNotificationRejected("Push notifications with a device token for the wrong topic should be rejected.",
                 this.getHandler(DEVICE_TOKENS_BY_TOPIC, Collections.emptyMap()),
                 this.headers,
