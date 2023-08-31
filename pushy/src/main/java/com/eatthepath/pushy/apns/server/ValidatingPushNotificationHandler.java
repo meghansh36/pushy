@@ -155,7 +155,6 @@ abstract class ValidatingPushNotificationHandler implements PushNotificationHand
             }
         }
 
-
         if (payload == null || payload.readableBytes() == 0) {
             throw new RejectedNotificationException(RejectionReason.PAYLOAD_EMPTY);
         }
