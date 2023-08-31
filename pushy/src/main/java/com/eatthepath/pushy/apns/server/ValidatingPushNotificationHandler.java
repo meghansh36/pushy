@@ -61,7 +61,7 @@ abstract class ValidatingPushNotificationHandler implements PushNotificationHand
 
     @Override
     public void handlePushNotification(final Http2Headers headers, final ByteBuf payload) throws RejectedNotificationException {
-
+	
         try {
             final CharSequence apnsIdSequence = headers.get(APNS_ID_HEADER);
 
@@ -155,8 +155,6 @@ abstract class ValidatingPushNotificationHandler implements PushNotificationHand
             }
         }
 
-        this.verifyAuthentication(headers);
-
         if (payload == null || payload.readableBytes() == 0) {
             throw new RejectedNotificationException(RejectionReason.PAYLOAD_EMPTY);
         }
@@ -164,6 +162,8 @@ abstract class ValidatingPushNotificationHandler implements PushNotificationHand
         if (payload.readableBytes() > MAX_PAYLOAD_SIZE) {
             throw new RejectedNotificationException(RejectionReason.PAYLOAD_TOO_LARGE);
         }
+
+	this.verifyAuthentication(headers);
     }
 
     protected abstract void verifyAuthentication(final Http2Headers headers) throws RejectedNotificationException;
